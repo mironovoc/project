@@ -45,7 +45,6 @@ public class TextCalculate {
         this.action = action;
     }
 
-
     public void ShowTime() {
         getAnswer();
         String[] s = answer.split("");
@@ -59,11 +58,5 @@ public class TextCalculate {
         } else {
             System.out.println("\"" + answer + "\"");
         }
-
-
-    }
-    public void Show() {
-        getAnswer();
-        System.out.println("\"" + answer + "\"");
     }
 }
