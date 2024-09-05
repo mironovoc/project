@@ -10,29 +10,59 @@ public class TextCalculate {
         for (int i = 0; i < values.length; i++) {
             values[i] = values[i].replace("\"", "");
         }
-        if (action == '+') {
-            answer = values[0] + values[1];
-        }
-        if (action == '*') {
-            String g = "";
-            multiply = Integer.parseInt(values[1]);
-            for (int i = 0; i<multiply; i++) {
-                g+=values[0];
+        boolean bd = false;
+
+        while (bd != true) {
+            int lingthValueOne = values[0].length();
+
+            if (lingthValueOne > 10) {
+                System.out.println("ОШИБКА!!! \nВ 1-ом значении\nВведено более 10 знаков.");
+                break;
             }
-            answer = g;
-        }
-        if (action == '-') {
-            index = values[0].indexOf(values[1]);
-            if (index == -1) {
-                answer = values[0];
-            } else {
-                answer = values[0].substring(0, index);
-                answer += values[0].substring(index + values[1].length());
+            try {
+                int lingthValueTwo = values[1].length();
+                if (lingthValueTwo > 10) {
+                    System.out.println("ОШИБКА!!!\n В 2-ом значении\nВведено более 10 знаков.");
+                    break;
+                }
+            } catch (Exception e) {
             }
-        }
-        if (action == '/') {
-            share = values[0].length() / Integer.parseInt(values[1]);
-            answer = values[0].substring(0, share);
+            try {
+                int number = Integer.parseInt(values[1]);
+                if (number > 10) {
+                    System.out.println("ОШИБКА!!!\nВозможно вводить числа от 1 до 10.");
+                    break;
+                }
+            } catch (Exception e) {
+            }
+
+
+            if (action == '+') {
+                answer = values[0] + values[1];
+            }
+            if (action == '*') {
+                String g = "";
+                multiply = Integer.parseInt(values[1]);
+                for (int i = 0; i < multiply; i++) {
+                    g += values[0];
+                }
+                answer = g;
+            }
+            if (action == '-') {
+                index = values[0].indexOf(values[1]);
+                if (index == -1) {
+                    answer = values[0];
+                } else {
+                    answer = values[0].substring(0, index);
+                    answer += values[0].substring(index + values[1].length());
+                }
+            }
+            if (action == '/') {
+                share = values[0].length() / Integer.parseInt(values[1]);
+                answer = values[0].substring(0, share);
+            }
+            bd = true;
+
         }
         return answer;
     }
@@ -58,5 +88,11 @@ public class TextCalculate {
         } else {
             System.out.println("\"" + answer + "\"");
         }
+
+    }
+
+    public void Show() {
+        getAnswer();
+        System.out.println("\"" + answer + "\"");
     }
 }
